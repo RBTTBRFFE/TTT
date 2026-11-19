@@ -1,0 +1,170 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-11-19T09:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2024.5.6",
+  "resources": [
+    {
+      "_id": "wrk_pz07_variant23",
+      "parentId": null,
+      "modified": 1795067983170,
+      "created": 1795067983170,
+      "name": "тест-опрос-23 (Insomnia)",
+      "description": "Вариант 23, О5 «Опрос», К3, порт 3623",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "env_pz07_variant23",
+      "parentId": "wrk_pz07_variant23",
+      "modified": 1795067983170,
+      "created": 1795067983170,
+      "name": "опрос-23 локально",
+      "data": {
+        "baseUrl": "http://localhost:3623",
+        "mockUrl": "http://localhost:3624"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "baseUrl",
+          "mockUrl"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1795067983170,
+      "_type": "environment"
+    },
+    {
+      "_id": "req_pz07_01",
+      "parentId": "wrk_pz07_variant23",
+      "modified": 1795067983170,
+      "created": 1795067983170,
+      "name": "01 Главная страница",
+      "description": "Сервер ПЗ.06 отвечает",
+      "url": "{{ _.baseUrl }}/",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -6,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_pz07_02",
+      "parentId": "wrk_pz07_variant23",
+      "modified": 1795067983170,
+      "created": 1795067983170,
+      "name": "02 Отправка данных (правильные)",
+      "description": "К3: формат обмена (JSON), поля тема/оценка",
+      "url": "{{ _.baseUrl }}/%D0%BE%D0%BF%D1%80%D0%BE%D1%81",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"тема\": \"Удобство расписания\",\n  \"оценка\": 5\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_pz07_03",
+      "parentId": "wrk_pz07_variant23",
+      "modified": 1795067983170,
+      "created": 1795067983170,
+      "name": "03 Пустые данные",
+      "description": "Негативный сценарий: пустые поля -> 400",
+      "url": "{{ _.baseUrl }}/%D0%BE%D0%BF%D1%80%D0%BE%D1%81",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"тема\": \"\",\n  \"оценка\": \"\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -4,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_pz07_04",
+      "parentId": "wrk_pz07_variant23",
+      "modified": 1795067983170,
+      "created": 1795067983170,
+      "name": "04 Неверный адрес",
+      "description": "Несуществующий адрес -> 404",
+      "url": "{{ _.baseUrl }}/%D0%BD%D0%B5%D0%B2%D0%B5%D1%80%D0%BD%D1%8B%D0%B9-%D0%B0%D0%B4%D1%80%D0%B5%D1%81",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -3,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_pz07_05",
+      "parentId": "wrk_pz07_variant23",
+      "modified": 1795067983170,
+      "created": 1795067983170,
+      "name": "05 Неверный метод",
+      "description": "GET на маршрут отправки -> 405",
+      "url": "{{ _.baseUrl }}/%D0%BE%D0%BF%D1%80%D0%BE%D1%81",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -2,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    }
+  ]
+}

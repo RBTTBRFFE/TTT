@@ -1,0 +1,428 @@
+{
+  "info": {
+    "_postman_id": "b7c1f2a4-3623-4d5e-9a11-pz07variant23",
+    "name": "тест-опрос-23",
+    "description": "УП.05, ПЗ.07, вариант 23.\nПредметная область: О5 «Опрос». Маршрут отправки данных: /опрос (поля «тема», «оценка»).\nКонфигурация К3: тело в формате обмена (application/json), автотест — код успеха.\nДополнительный сценарий 06 показывает разницу форматов тела.\nПорт: 3623. Стартовый инструмент: А (Postman).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 Главная страница",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Автотест по конфигурации К3: код успеха",
+              "pm.test(\"Код ответа 200 (успех)\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": []
+        },
+        "description": "Проверка, что сервер ПЗ.06 запущен и отвечает на главной странице."
+      },
+      "response": [
+        {
+          "name": "Пример: сервер работает (200)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "html",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/html; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "<h1>Сервер работает</h1>"
+        }
+      ]
+    },
+    {
+      "name": "02 Отправка данных (правильные)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Автотест по конфигурации К3: код успеха",
+              "pm.test(\"Код ответа 200 (успех)\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/%D0%BE%D0%BF%D1%80%D0%BE%D1%81",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "%D0%BE%D0%BF%D1%80%D0%BE%D1%81"
+          ]
+        },
+        "description": "Маршрут «опрос». Конфигурация К3: тело в формате обмена (application/json), поля «тема», «оценка».",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"тема\": \"Удобство расписания\",\n  \"оценка\": 5\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "Пример: ответ принят (200)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"тема\": \"Удобство расписания\",\n  \"оценка\": 5\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/%D0%BE%D0%BF%D1%80%D0%BE%D1%81",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "%D0%BE%D0%BF%D1%80%D0%BE%D1%81"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"status\": \"ok\",\n  \"message\": \"Ответ на опрос принят\",\n  \"received\": {\n    \"id\": 1,\n    \"тема\": \"Удобство расписания\",\n    \"оценка\": 5,\n    \"дата\": \"2025-11-19T09:00:00.000Z\"\n  },\n  \"total\": 1\n}"
+        }
+      ]
+    },
+    {
+      "name": "03 Пустые данные",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Негативный сценарий: пустые поля -> 400",
+              "pm.test(\"Код ответа 400 (некорректный запрос)\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/%D0%BE%D0%BF%D1%80%D0%BE%D1%81",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "%D0%BE%D0%BF%D1%80%D0%BE%D1%81"
+          ]
+        },
+        "description": "Негативный сценарий: пустые обязательные поля, ожидаем 400.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"тема\": \"\",\n  \"оценка\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "Пример: заполните все поля (400)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"тема\": \"\",\n  \"оценка\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/%D0%BE%D0%BF%D1%80%D0%BE%D1%81",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "%D0%BE%D0%BF%D1%80%D0%BE%D1%81"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"error\": \"Заполните все поля\",\n  \"details\": {\n    \"тема\": \"поле обязательно и не может быть пустым\",\n    \"оценка\": \"требуется целое число от 1 до 5\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "04 Неверный адрес",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Несуществующий адрес -> 404",
+              "pm.test(\"Код ответа 404 (не найдено)\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/%D0%BD%D0%B5%D0%B2%D0%B5%D1%80%D0%BD%D1%8B%D0%B9-%D0%B0%D0%B4%D1%80%D0%B5%D1%81",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "%D0%BD%D0%B5%D0%B2%D0%B5%D1%80%D0%BD%D1%8B%D0%B9-%D0%B0%D0%B4%D1%80%D0%B5%D1%81"
+          ]
+        },
+        "description": "Адрес, которого нет на сервере, ожидаем 404."
+      },
+      "response": [
+        {
+          "name": "Пример: не найдено (404)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/%D0%BD%D0%B5%D0%B2%D0%B5%D1%80%D0%BD%D1%8B%D0%B9-%D0%B0%D0%B4%D1%80%D0%B5%D1%81",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "%D0%BD%D0%B5%D0%B2%D0%B5%D1%80%D0%BD%D1%8B%D0%B9-%D0%B0%D0%B4%D1%80%D0%B5%D1%81"
+              ]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"error\": \"Не найдено\",\n  \"path\": \"/неверный-адрес\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "05 Неверный метод",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Неверное действие на маршруте отправки -> 405",
+              "pm.test(\"Код ответа 405 (метод не разрешён)\", function () {",
+              "    pm.response.to.have.status(405);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/%D0%BE%D0%BF%D1%80%D0%BE%D1%81",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "%D0%BE%D0%BF%D1%80%D0%BE%D1%81"
+          ]
+        },
+        "description": "На маршрут отправки данных пришли действием GET, ожидаем 405."
+      },
+      "response": [
+        {
+          "name": "Пример: метод не разрешён (405)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/%D0%BE%D0%BF%D1%80%D0%BE%D1%81",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "%D0%BE%D0%BF%D1%80%D0%BE%D1%81"
+              ]
+            }
+          },
+          "status": "Method Not Allowed",
+          "code": 405,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"error\": \"Метод не разрешён\",\n  \"allowed\": \"POST\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "06 Доп.: неверный формат тела",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Дополнительно: тело не в формате обмена -> 415",
+              "pm.test(\"Код ответа 415 (тип содержимого)\", function () {",
+              "    pm.response.to.have.status(415);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/%D0%BE%D0%BF%D1%80%D0%BE%D1%81",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "%D0%BE%D0%BF%D1%80%D0%BE%D1%81"
+          ]
+        },
+        "description": "Дополнительный сценарий: для конфигурации К3 сервер ждёт формат обмена, а данные отправлены как данные формы (application/x-www-form-urlencoded). Ожидаем 415.",
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "тема",
+              "value": "Удобство расписания",
+              "type": "text"
+            },
+            {
+              "key": "оценка",
+              "value": "5",
+              "type": "text"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3623",
+      "type": "string"
+    }
+  ]
+}
